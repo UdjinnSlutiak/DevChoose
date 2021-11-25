@@ -1,0 +1,30 @@
+﻿@model DevChoose.Services.Requests.LoginRequest
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1 style="font-weight:bold">Logging in</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Email" class="control-label" style="font-weight:bold;"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label" style="font-weight:bold;"></label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger asp-validation-summary" style="padding-bottom:10px;"></div>
+            <div class="form-group">
+                <input type="submit" value="Log In" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

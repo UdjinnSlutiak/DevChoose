@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Main";
+}
+
+<div style="text-align: center;">
+    <h3>Welcome to DevChoose web-site</h3>
+
+    <hr />
+
+    <h4>Here you can search developers that might release your project</h4>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <h4>Register or sign in to have more features, like messaging</h4>
+    }
+</div>

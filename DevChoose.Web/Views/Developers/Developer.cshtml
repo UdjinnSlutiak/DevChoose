@@ -1,0 +1,20 @@
+﻿@model DevChoose.Domain.Models.User
+
+@{
+    ViewData["Title"] = "DevChoose - " + Model.CompanyName;
+}
+
+<div>
+    <h3>@Model.CompanyName</h3>
+</div>
+
+<hr />
+
+<div>
+    <h5>Company description: <b>@Model.About</b></h5>
+    <h5>Company location: <b>@Model.Location</b></h5>
+    <h5>Company contact email: <b>@Model.Email</b></h5>
+    <h5>Company contact phone: <b>@Model.Phone</b></h5>
+    <h5>Founder name: <b>@Model.FullName</b></h5>
+    <h5></h5>
+</div>
