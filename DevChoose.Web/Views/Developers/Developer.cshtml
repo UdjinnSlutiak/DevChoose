@@ -18,7 +18,7 @@
     <h5>Founder name:&emsp;<b><mark>@Model.FullName</mark></b></h5>
 
     <br />
-    @if (User.Identity.Name != Model.FullName)
+    @if (User.Identity.Name != Model.FullName && User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value == "Customer")
     {
         <a asp-controller="dialogs" asp-action="write" asp-route-id="@Model.Id" class="btn btn-primary">Write</a>
     }

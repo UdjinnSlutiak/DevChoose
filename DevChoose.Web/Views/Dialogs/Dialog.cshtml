@@ -4,49 +4,51 @@
     ViewData["Title"] = "Dialog with " + Model.Companion.FullName;
 }
 
-<div style="width: 100%; height: 85%">
-    @if (Model.Messages != null && Model.Messages.Count() != 0)
-    {
-        @foreach (var item in Model.Messages)
+<div style="display: block; height: 40em;">
+    <div style="width: 100%; height: 85%; overflow: auto; position: relative;">
+        @if (Model.Messages != null && Model.Messages.Count() != 0)
         {
-            if (!(item.SenderId == Model.Companion.Id))
+            @foreach (var item in Model.Messages)
             {
-                <div style="text-align: right; width: 100%;">
-                    <div style="width: 40%; background-color: lightblue; margin-right: 0; margin-left: auto;">
-                        <p>@item.Text</p>
-                        <p><i>@item.Sent</i></p>
+                if (!(item.SenderId == Model.Companion.Id))
+                {
+                    <div style="text-align: right; width: 100%;">
+                        <div style="max-width: 40%; background-color: lightblue; margin-right: 0; margin-left: auto; margin-top:1%; padding: 1%; border-radius: 20px;">
+                            <p style="font-size: small;">@item.Text</p>
+                            <p style="margin-bottom: 0; font-size: x-small;"><i>@item.Sent</i></p>
+                        </div>
                     </div>
-                </div>
-            }
-            else
-            {
-                <div style="text-align: left; width: 100%;">
-                    <div style="width: 40%; background-color: blue; margin-right: auto; margin-left: 0; ">
-                        <p>@item.Text</p>
-                        <p><i>@item.Sent</i></p>
+                }
+                else
+                {
+                    <div style="text-align: left; width: 100%;">
+                        <div style="max-width: 40%; background-color: bisque; margin-right: auto; margin-left: 0; margin-top: 1%; padding: 1%; border-radius: 20px; ">
+                            <p style="font-size: small;">@item.Text</p>
+                            <p style="margin-bottom: 0; font-size: x-small;"><i>@item.Sent</i></p>
+                        </div>
                     </div>
-                </div>
+                }
             }
         }
-    }
-    else
-    {
-        <h3 style="text-align: center;">There is no messages</h3>
-    }
-</div>
+        else
+        {
+            <h3 style="text-align: center;">There is no messages</h3>
+        }
+    </div>
 
-<hr />
+    <hr />
 
-<div style="width: 100%;">
-    <form method="post" asp-controller="dialogs" asp-action="send" asp-route-id="@Model.Dialog.Id">
-        <div style="display: block;">
-            <div class="form-group">
-                <textarea style="width: 100%;" name="text"></textarea>
+    <div style="width: 100%;">
+        <form method="post" asp-controller="dialogs" asp-action="send" asp-route-id="@Model.Dialog.Id">
+            <div style="display: block;">
+                <div class="form-group">
+                    <textarea rows="4" style="width: 100%; resize: none;" name="text"></textarea>
+                </div>
+
+                <div class="form-group" style="text-align: right;">
+                    <input type="submit" value="Send" class="btn btn-primary" />
+                </div>
             </div>
-
-            <div class="form-group" style="text-align: right;">
-                <input type="submit" value="Send" class="btn btn-primary" />
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

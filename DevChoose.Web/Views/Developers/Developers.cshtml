@@ -13,7 +13,7 @@
 <div style="display: flex; flex-wrap: wrap; width: 100%;">
     @foreach (var item in Model)
     {
-        <div style="max-width:40%; height:min-content; background-color: lightgrey; border-radius: 4%; text-align: left; padding: 3% 2%; margin: 1%;">
+        <div style="max-width:40%; height:min-content; background-color: lightgrey; border-radius: 20px; text-align: left; padding: 3% 2%; margin: 1%;">
             <a asp-action="developer" asp-route-id="@item.Id" style="text-decoration:none; color:black; width:100%; height:100%; box-sizing:content-box;">
                 <h5 style="text-align:justify; font-weight:bold;">@Html.DisplayFor(modelItem => item.CompanyName)</h5>
                 <h6 style="text-align:justify;">@Html.DisplayFor(modelItem => item.About)</h6>
