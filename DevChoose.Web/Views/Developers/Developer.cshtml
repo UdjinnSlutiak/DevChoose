@@ -11,10 +11,15 @@
 <hr />
 
 <div>
-    <h5>Company description: <b>@Model.About</b></h5>
-    <h5>Company location: <b>@Model.Location</b></h5>
-    <h5>Company contact email: <b>@Model.Email</b></h5>
-    <h5>Company contact phone: <b>@Model.Phone</b></h5>
-    <h5>Founder name: <b>@Model.FullName</b></h5>
-    <h5></h5>
+    <h5>Description:&emsp;<b><mark>@Model.About</mark></b></h5>
+    <h5>Location:&emsp;<b><mark>@Model.Location</mark></b></h5>
+    <h5>Email:&emsp;<b><mark>@Model.Email</mark></b></h5>
+    <h5>Phone:&emsp;<b><mark>@Model.Phone</mark></b></h5>
+    <h5>Founder name:&emsp;<b><mark>@Model.FullName</mark></b></h5>
+
+    <br />
+    @if (User.Identity.Name != Model.FullName)
+    {
+        <a asp-controller="dialogs" asp-action="write" asp-route-id="@Model.Id" class="btn btn-primary">Write</a>
+    }
 </div>

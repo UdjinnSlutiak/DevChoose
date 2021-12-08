@@ -21,7 +21,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="developers" asp-action="developers" asp-route-skip="0" asp-route-take="20">Developers</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="dialogs" asp-action="dialogs" asp-route-skip="0" asp-route-take="20">Dialogs</a>
+                        </li>
                     </ul>
                 </div>
                 @if (User.Identity.IsAuthenticated)

@@ -30,7 +30,8 @@ namespace DevChoose.Services.Implementations
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, userByDataSearchResult.FullName)
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, userByDataSearchResult.FullName),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, userByDataSearchResult.Role),
                 };
 
                 ClaimsIdentity identity = new (claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

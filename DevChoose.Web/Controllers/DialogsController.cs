@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DevChoose.Domain.Models;
 using DevChoose.Services.Abstractions;
+using DevChoose.Services.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevChoose.Web.Controllers
@@ -25,41 +27,65 @@ namespace DevChoose.Web.Controllers
         {
             string fullName = this.GetCurrentUserFullName();
 
-            IEnumerable<Dialog> dialogs = await this.dialogService.GetAsync(skip, take, fullName);
+            IEnumerable<User> companions = await this.dialogService.GetCompanionsAsync(skip, take, fullName);
 
-            return View(dialogs);
+            return View(companions);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Dialog(int id, int skip, int take)
+        public async Task<IActionResult> Dialog(int id)
         {
             string fullName = this.GetCurrentUserFullName();
 
+            GetDialogRequest response = new();
             try
             {
-                Dialog dialog = await this.dialogService.GetAsync(id, fullName);
+                response = await this.dialogService.GetAsync(id, fullName);
             }
             catch (Exception ex)
             {
                 return View(ex.Message);
             }
 
-            IEnumerable<Message> messages = await this.messageService.GetAsync(skip, take, id);
-
-            return View(messages);
+            return View("Dialog", response);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SendMessage(Message message)
+        [HttpGet("write")]
+        public async Task<IActionResult> Write(int id)
         {
-            IEnumerable<Message> newMessageCollection = await this.messageService.SendAsync(message);
+            var fullName = this.GetCurrentUserFullName();
 
-            return View(newMessageCollection);
+            var response = await this.dialogService.WriteAsync(id, fullName);
+
+            return View("Dialog", response);
+        }
+
+        [HttpPost("send/{id}")]
+        public async Task<IActionResult> SendMessage(string text, [FromRoute] int id)
+        {
+            var fullName = this.GetCurrentUserFullName();
+            var userRole = this.GetCurrentUserRole();
+
+            Dialog dialog = await this.messageService.SendAsync(text, id, fullName);
+
+            if (userRole == "Developer")
+            {
+                return await this.Dialog(dialog.CustomerId);
+            }
+            else
+            {
+                return await this.Dialog(dialog.DeveloperId);
+            }
         }
 
         private string GetCurrentUserFullName()
         {
             return HttpContext.User.Identity.Name;
+        }
+
+        private string GetCurrentUserRole()
+        {
+            return HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
         }
     }
 }

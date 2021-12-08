@@ -9,10 +9,12 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Views\Developers\" />
+    <None Remove="Views\Dialogs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Authorization\" />
     <Folder Include="Views\Developers\" />
+    <Folder Include="Views\Dialogs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevChoose.Domain\DevChoose.Domain.csproj">

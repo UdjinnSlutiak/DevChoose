@@ -50,6 +50,7 @@ namespace DevChoose.Web
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IDialogService, DialogService>();
+            services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IAuthorizationService, AuthorizationService>();
         }
 

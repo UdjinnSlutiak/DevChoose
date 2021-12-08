@@ -8,6 +8,6 @@ namespace DevChoose.Services.Abstractions
     {
         public Task<IEnumerable<Message>> GetAsync(int offset, int count, int dialogId);
 
-        public Task<IEnumerable<Message>> SendAsync(Message message);
+        public Task<Dialog> SendAsync(string text, int dialogId, string fullName);
     }
 }

@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace DevChoose.Domain.Models
+﻿namespace DevChoose.Domain.Models
 {
     public class Dialog
     {
         public int Id { get; set; }
-        public User Developer { get; set; }
-        public User Customer { get; set; }
-        public IEnumerable<Message> Messages {get; set; }
+
+        public int DeveloperId { get; set; }
+
+        public int CustomerId { get; set; }
     }
 }

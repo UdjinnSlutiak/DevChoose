@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DevChoose.Domain.Models.User>
+
+@{
+    ViewData["Title"] = User.Identity.Name + "'s Dialogs";
+}
+
+<div style="display:block; width: 100%;">
+    @if (Model.Count() != 0)
+    {
+        @foreach (var item in Model)
+        {
+            <div style="width:100%; height:min-content; background-color: lightgrey; border-radius: 4%; text-align: left; padding: 3% 2%; margin: 1%;">
+                <a asp-action="dialog" asp-route-id="@item.Id" style="text-decoration:none; color:black; width:100%; height:100%; box-sizing:content-box; display: flex;">
+                    <h5 style="text-align:justify; font-weight:bold;">@Html.DisplayFor(ModelItem => item.FullName) </h5>
+                    <p style="text-align:justify;">&emsp;from&emsp;</p>
+                    <h5 style="text-align:justify; font-weight:bold;"> @Html.DisplayFor(ModelItem => item.CompanyName)</h5>
+                </a>
+            </div>
+        }
+    }
+    else
+            {
+                <h3 style="text-align:center;">You have no dialogs yet</h3>
+            }
+</div>
