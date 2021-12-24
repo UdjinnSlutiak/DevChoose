@@ -13,8 +13,8 @@ namespace DevChoose.Services.Implementations
         private readonly IRepository<User> userRepository;
         private readonly IRepository<Dialog> dialogRepository;
 
-        public MessageService(IRepository<Message> messageRepository, IRepository<User> userRepository
-            ,IRepository<Dialog> dialogRepository)
+        public MessageService(IRepository<Message> messageRepository, IRepository<User> userRepository,
+            IRepository<Dialog> dialogRepository)
         {
             this.messageRepository = messageRepository;
             this.userRepository = userRepository;
